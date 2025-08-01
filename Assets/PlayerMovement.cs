@@ -18,12 +18,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        horizontalSpeed = Input.GetAxisRaw("Horizontal");
-        verticalSpeed = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector2(horizontalSpeed * speed, verticalSpeed * speed);
 
+        Movement();
     }
     public void Movement()
     {
