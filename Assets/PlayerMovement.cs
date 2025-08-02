@@ -35,10 +35,18 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = 5f; 
         }
-        if(horizontalSpeed != 0 && verticalSpeed != 0)
+        if(horizontalSpeed !=0)
         {
-            
+            verticalSpeed = 0;
         }
+        if(verticalSpeed !=0)
+        {
+            horizontalSpeed = 0;
+        }
+        //if (!(horizontalSpeed != 0 && verticalSpeed != 0))
+        {
             rb.velocity = new Vector2(horizontalSpeed * speed, verticalSpeed * speed);
+        }
+            
     }
 }

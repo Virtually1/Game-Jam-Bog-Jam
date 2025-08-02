@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuFunction : MonoBehaviour
 {
     public GameObject mainMenu;
+    bool paused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,9 +13,9 @@ public class MenuFunction : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&&!paused)
         {
             Menu();
         }
