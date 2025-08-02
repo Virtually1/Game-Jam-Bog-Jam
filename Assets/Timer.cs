@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float timeLeft = 60f;
+    public float timeLeft = 120f;
+    public TextMeshProUGUI timertext;
+    public float vtimeleft;
+    public float minutes;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,19 @@ public class Timer : MonoBehaviour
         if (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
+            vtimeleft = timeLeft- (int)timeLeft;
+            vtimeleft = vtimeleft * 100;
+            if (timeLeft > 60)
+            {
+                minutes = (int)(timeLeft / 60);
+                timertext.text = "Time Left: " + ((int)minutes).ToString() + ":" + ((int)(timeLeft-(minutes*60))) + "." + ((int)vtimeleft).ToString();
+            }
+            else
+            {
+                minutes = 0;
+            }
+            if (timeLeft < 60 && timeLeft > 0)
+                timertext.text = "Time Left: " + ((int)timeLeft).ToString() +"."+ ((int)vtimeleft).ToString();
         }
         if(timeLeft <= 0)
         {
