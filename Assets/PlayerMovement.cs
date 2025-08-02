@@ -35,6 +35,6 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = 5f; 
         }
-            rb.velocity = new Vector2(horizontalSpeed * speed, verticalSpeed * speed);
+        rb.velocity = new Vector2(horizontalSpeed * speed, verticalSpeed * speed);
     }
 }
