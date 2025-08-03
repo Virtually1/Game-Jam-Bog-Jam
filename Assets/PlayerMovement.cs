@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float verticalSpeed;
     public float energy = 100f;
     public EnergyBar energyBar;
-
+    public float timer = 0f;
+    public bool isrecharging = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,16 +28,21 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Movement()
     {
+        if(isrecharging)
+        {
+            speed = 0f;
+            energyrecharge();
+        }
         horizontalSpeed = Input.GetAxisRaw("Horizontal");
         verticalSpeed = Input.GetAxisRaw("Vertical");
-        if (Input.GetKey(running) && energy > 1)
+        if (Input.GetKey(running) && energy > 15&& isrecharging == false)
         {
             speed = 10f;
             energydrain();
         }
-        else
+        else if(isrecharging == false)
         {
-            speed = 7f;
+            speed = 6f;
         }
         if (horizontalSpeed != 0)
         {
@@ -60,13 +66,19 @@ public class PlayerMovement : MonoBehaviour
     }
     public void energyrecharge()
     {
-        while (energy < 100f)
-        {
-            energy += Time.deltaTime * 7;
-        }
+
+        timer += Time.deltaTime;
+            if (timer > 1f)
+            {
+                energy += 4;
+                timer = 0;
+            }
+            energyBar.SetEnergy((int)energy);
+
         if (energy > 100f)
         {
             energy = 100f;
+            isrecharging = false;
         }
     }
 }
