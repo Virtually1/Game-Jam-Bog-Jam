@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MenuFunction : MonoBehaviour
 {
     public GameObject mainMenu;
-    bool paused = false;
+    public bool paused = false;
+    public bool working=false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,7 @@ public class MenuFunction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&!paused)
+        if (Input.GetKeyDown(KeyCode.Escape)&&!paused&&!working)
         {
             Menu();
         }

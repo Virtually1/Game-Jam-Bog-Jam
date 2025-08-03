@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        energyBar.SetEnergy((int)energy);
         Movement();
     }
     public void Movement()
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     public void energydrain()
     {
         energy -= Time.deltaTime * 3;
-        energyBar.SetEnergy((int)energy);
+        
 
     }
     public void energyrecharge()

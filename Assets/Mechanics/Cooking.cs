@@ -11,6 +11,7 @@ public class Cooking : MonoBehaviour
     public bool spawned=false;
     public int rng;
     public int[] order;
+    public Interact interact;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +35,9 @@ public class Cooking : MonoBehaviour
             
 
             Menu.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape))
             {
+                interact.work = false;
                 Menu.SetActive(false);
                 cancook = false;
             }
