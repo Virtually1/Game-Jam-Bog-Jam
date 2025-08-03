@@ -6,10 +6,14 @@ public class Cooking : MonoBehaviour
 {
     public bool cancook = false;
     public GameObject Menu;
+    public GameObject[] foods;
+    public int chopcount=0;
+    public bool spawned=false;
+    public int rng;
+    public int[] order;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -17,6 +21,18 @@ public class Cooking : MonoBehaviour
     {
         if (cancook)
         {
+            if(!spawned)
+            {
+                rng = Random.Range(0, 2);
+                if(order[rng] != -1 )
+                {
+                    order[rng] = -1;
+                    foods[rng].SetActive(true);
+                    spawned = true;
+                }
+            }
+            
+
             Menu.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -27,6 +43,15 @@ public class Cooking : MonoBehaviour
     }
     public void Chop()
     {
+        
+       chopcount++;
        Debug.Log("Chopping ingredients...");
+        if(chopcount==5)
+        {
+            Debug.Log(foods[rng].gameObject.name);
+            foods[rng].SetActive(false);
+            chopcount = 0;
+            spawned = false;
+        }
     }
 }
