@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,19 +12,20 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode running = KeyCode.LeftShift;
     public float verticalSpeed;
     public float energy = 100f;
-    public EnergyBar energyBar;
     public float timer = 0f;
     public bool isrecharging = false;
+    public GameObject[] img = new GameObject[4];
+    public int bars;
+    public int nobars;
     // Start is called before the first frame update
     void Start()
     {
-        energyBar.SetMaxEnergy(100);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        energyBar.SetEnergy((int)energy);
+        energybar();
         Movement();
     }
     public void Movement()
@@ -64,16 +66,28 @@ public class PlayerMovement : MonoBehaviour
         
 
     }
+    public void energybar()
+    {
+        bars = (int)Mathf.Ceil(energy / 25);
+        nobars = (int)Mathf.Floor((100 - energy) / 25);
+        for (int i = 0; i < bars; i++)
+        {
+            img[i].gameObject.SetActive(true);
+        }
+        for (int i = 4 - nobars; i < 4; i++)
+        {
+            img[i].gameObject.SetActive(false);
+        }
+    }
     public void energyrecharge()
     {
 
         timer += Time.deltaTime;
             if (timer > 1f)
             {
-                energy += 4;
+                energy += 7;
                 timer = 0;
             }
-            energyBar.SetEnergy((int)energy);
 
         if (energy > 100f)
         {
