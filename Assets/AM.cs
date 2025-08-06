@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -15,51 +16,50 @@ public class AM : MonoBehaviour
     public int idn;
     public int idl;
     public int idr;
+    public Table[] tables = new Table[8];
+    public bool hastaken=false;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = new Rigidbody2D[na.npc.Length];
-        xpos = new float[na.npc.Length];
-        ypos = new float[na.npc.Length];
-
-    }
+        rb = new Rigidbody2D[na.limit];
+        }
 
     // Update is called once per frame
     void Update()
     {
-        for( idr  = 0; idr < rb.Length;idr++)
-        {
-            if(rb[idr] != null)
-            {
-                xpos[idr] = rb[idr].gameObject.transform.position.x;
-                ypos[idr] = rb[idr].gameObject.transform.position.y;
-            }
-          
-        }
+
+
     }
     public void Spawn(int id)
     {
         idl= id;
         rb[idl] = na.temp[id].GetComponent<Rigidbody2D>();
-        //Seating(id);
+        Seating(id);
     }
     public void Seating(int id)
     {
-
+        hastaken = false;
         idn = id;
-        rng=Random.Range(0,na.locations.Length);
-        while(xpos[idn] > na.locations[rng].position.x)
+        for(int i = 0; i < na.locations.Length; i++)
         {
-            rb[idn].velocity = new Vector2(-1 * speed, 0);
+            if (!tables[i].taken)
+            {
+                for(int j = 0; j < tables[i].chairpos.Length; j++)
+                {
+                    if (tables[i].chairid[j]!=1&&!hastaken)
+                    {
+                        rb[idn].gameObject.transform.position = tables[i].chairpos[j].transform.position;
+                        tables[i].chairstaken++;
+                        tables[i].chairid[j] = 1;
+                        tables[i].OrderManage();
+                        hastaken= true;
+                    }
+                }
+
+            }
         }
-        while (xpos[idn] < na.locations[rng].position.x)
-        {
-            rb[idn].velocity = new Vector2(1 * speed, 0);
-        }
-        while (ypos[idn] < na.locations[rng].position.y)
-        {
-            rb[idn].velocity = new Vector2(0 , 1*speed);
-        }
+        
+        
     }
 }

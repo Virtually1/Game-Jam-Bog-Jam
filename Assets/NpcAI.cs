@@ -18,7 +18,7 @@ public class NpcAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        temp = new GameObject[3];
+        temp = new GameObject[limit];
     }
 
     // Update is called once per frame
