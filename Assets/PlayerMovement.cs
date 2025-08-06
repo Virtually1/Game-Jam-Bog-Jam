@@ -1,6 +1,7 @@
 using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float timer = 0f;
     public bool isrecharging = false;
     public GameObject[] img = new GameObject[4];
+    public TextMeshProUGUI procent;
     public int bars;
     public int nobars;
     // Start is called before the first frame update
@@ -78,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         {
             img[i].gameObject.SetActive(false);
         }
+        procent.text = ((int)energy).ToString()+"%";
     }
     public void energyrecharge()
     {
