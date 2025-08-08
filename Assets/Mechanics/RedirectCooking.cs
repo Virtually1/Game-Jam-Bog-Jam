@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,37 +7,58 @@ public class RedirectCooking : MonoBehaviour
 {
     public Cooking cook;
     public int c;
-    public FoodReq req;
+    public bool active=false;
+    public string zname;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Pot()
     {
-         
-        if (this.name == "Tomato")
+         ingredients ing = new ingredients();
+        for(int i = 0; i <9 ; i++)
         {
-            cook.potid[c] = 1;
-            Debug.Log("To");
-        }
-        else if (this.name == "Ingredient 2")
-        {
-            cook.potid[c] = 2;
-            Debug.Log("Ca");
-        }
-        else if (this.name == "Lettuce")
-        {
-            cook.potid[c] = 3;
-        }
-        this.gameObject.SetActive(false);
 
-        c++;
+            ing = (ingredients)i;
+            zname = Enum.GetName(typeof(ingredients), i+4);
+            if (this.gameObject.name == zname && cook.o < cook.potid.Length)
+            {
+
+                if ((cook.potid[cook.o] = i + 4) == cook.dishreqid[cook.o])
+                {
+                    cook.potid[cook.o] = i + 4;
+                    cook.o++;
+                    Debug.Log(name);
+                    this.gameObject.SetActive(false);
+                    cook.serving();
+                }
+                else
+                {
+                    Debug.Log("NOT IN ORDER");
+                }
+            }
+
+        }
+
     }    
+    public enum ingredients
+    {
+        BSlice=4,
+        CSlice=5,
+        ChSlice=6,
+        CiSlice=7,
+        FSlice=8,
+        MSlice=9,
+        PSlice=10,
+        TSlice=11,
+        WSlice=12,
+    }
 }

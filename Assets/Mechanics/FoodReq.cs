@@ -18,9 +18,10 @@ public class FoodReq : MonoBehaviour
         
     }
 }
-//5-Banana
-//6-Carrot
-//7-Chicken
+//4-Banana
+//5-Carrot
+//6-Chicken
+//7-Citrus
 //8-Fish
 //9-Meat
 //10-Potato

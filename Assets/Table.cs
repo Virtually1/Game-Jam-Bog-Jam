@@ -15,6 +15,8 @@ public class Table : MonoBehaviour
     public GameObject recipe;
     public FoodReq[] Fr = new FoodReq[7];
     public bool serving;
+    public int tableid;
+    public Tasks tk;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +47,10 @@ public class Table : MonoBehaviour
         for(int i = 0;i<orders;i++)
         {
             rng = Random.Range(1,7);
-
+            Debug.Log("Task");
+            tk.ordersid[i] = rng;
         }
+        tk.taskid = 2;
     }
     public void OrderManage()
     {

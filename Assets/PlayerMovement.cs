@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI procent;
     public int bars;
     public int nobars;
+    public RawImage imgs;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,7 +82,23 @@ public class PlayerMovement : MonoBehaviour
         {
             img[i].gameObject.SetActive(false);
         }
-        procent.text = ((int)energy).ToString()+"%";
+
+        if(bars>1)
+        {
+            for(int i = 0;i<img.Length;i++)
+            {
+                 img[i].GetComponent<RawImage>().color = Color.white;
+            }
+        }
+        else 
+        {
+            for (int i = 0; i < img.Length; i++)
+            {
+                img[i].GetComponent<RawImage>().color = Color.red;
+            }
+            
+        }
+            procent.text = ((int)energy).ToString() + "%";
     }
     public void energyrecharge()
     {

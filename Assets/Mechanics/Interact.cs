@@ -6,6 +6,7 @@ public class Interact : MonoBehaviour
 {
     public bool caninteract = false;
     public PlayerMovement pm;
+    public Tasks tk;
     public Cooking ck;
     public MenuFunction menu;
     public GameObject[] Stations;
@@ -23,12 +24,20 @@ public class Interact : MonoBehaviour
         if (caninteract && pm.energy > 10&&!menu.paused)
         {
             Collider2D station = Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("Station"));
-            if(station.gameObject.tag=="Cooking" && Input.GetKeyDown(KeyCode.E))
+            if(station.gameObject.tag=="Cooking" && Input.GetKeyDown(KeyCode.E)&&tk.taskid==2)
             {
                  ck.cancook= true;
                 menu.working= true;
                 work = true;
+                ck.Menu.SetActive(true);
                 pm.energy -= 10; 
+            }
+            if (station.gameObject.tag == "zzzzz" && Input.GetKeyDown(KeyCode.E) && tk.taskid == 3)
+            {
+                ck.cancook = true;
+                menu.working = true;
+                work = true;
+                pm.energy -= 10;
             }
         }
         if (work == false)
