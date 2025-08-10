@@ -8,6 +8,7 @@ public class Interact : MonoBehaviour
     public PlayerMovement pm;
     public Tasks tk;
     public Cooking ck;
+    public Cleaning cl;
     public MenuFunction menu;
     public GameObject[] Stations;
     public bool work;
@@ -32,9 +33,10 @@ public class Interact : MonoBehaviour
                 ck.Menu.SetActive(true);
                 pm.energy -= 10; 
             }
-            if (station.gameObject.tag == "zzzzz" && Input.GetKeyDown(KeyCode.E) && tk.taskid == 3)
+            if (station.gameObject.tag == "Washing" && Input.GetKeyDown(KeyCode.E) && tk.taskid == 3)
             {
-                ck.cancook = true;
+                cl.UI.SetActive(true);
+                cl.canclean = true;
                 menu.working = true;
                 work = true;
                 pm.energy -= 10;

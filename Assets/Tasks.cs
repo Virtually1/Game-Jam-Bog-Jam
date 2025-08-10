@@ -7,6 +7,7 @@ public class Tasks : MonoBehaviour
     public int taskid;
     public int tableid;
     public string[] tasktext;
+    public int amount;
     public string taskname;
     public bool hastask;
     public bool finished;

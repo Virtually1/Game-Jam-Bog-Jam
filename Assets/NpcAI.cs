@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using UnityEngine;
 
 public class NpcAI : MonoBehaviour
 {
     public GameObject spawnzone;
+    public GameObject[] leaving= new GameObject[4];
     public int amount;
     public int limit;
     public float timer;
@@ -14,7 +16,10 @@ public class NpcAI : MonoBehaviour
     public Transform[] locations;
     public AM AM;
     public int rng;
+    public int pack;
+    public float chance;
     public GameObject[] temp;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +31,31 @@ public class NpcAI : MonoBehaviour
     {
         if(amount<limit&&spawned)
         {
-
-            rng = Random.Range(0,npc.Length);
-            temp[amount] = ((GameObject)Instantiate(npc[rng], spawnzone.transform));
-            temp[amount].name = "Person - " + amount.ToString();
-            //AM.Spawn(amount);
-            amount++;
-            spawned = false;
-            AM.Spawn(amount-1);
+            pack = Random.Range(1,5);
+            if(pack ==1)
+            {
+                chance=Random.Range(0f,1f);
+                if(chance >0.6)
+                {
+                    pack++;
+                }
+                if(chance >0.9)
+                {
+                    pack++;
+                }
+            }
+            if (pack > limit - amount)
+                pack = limit - amount;
+            for(int i = 0; i <pack; i++)
+            {
+                rng = Random.Range(0, npc.Length);
+                temp[amount] = ((GameObject)Instantiate(npc[rng], spawnzone.transform));
+                temp[amount].name = "Person - " + amount.ToString();
+                amount++;
+                spawned = false;
+                AM.Spawn(amount - 1);
+            }    
+            
         }
         Delay();
     }
@@ -49,4 +71,5 @@ public class NpcAI : MonoBehaviour
             }
         }
     }
+    
 }

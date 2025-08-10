@@ -32,8 +32,10 @@ public class Cooking : MonoBehaviour
     public RedirectCooking[] Rc;
     public string tname;
     public bool inpot;
+    public Cleaning cl;
     public int v;
     public bool once = false;
+    public int dishes;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,7 @@ public class Cooking : MonoBehaviour
                 Menu.SetActive(false);
                 cancook = false;
             }
+            
         }
     }
     public void Chop()
@@ -160,6 +163,21 @@ public class Cooking : MonoBehaviour
             spawned=false;
             ti = 0;
             o = 0;
+            dishes++;
+            if (tk.currentorder == tk.amount)
+            {
+
+                tk.currentorder = 0;
+                interact.work = false;
+                Menu.SetActive(false);
+                cancook = false;
+                once = true;
+                tk.taskid = 1;
+                for(int i=0; i<tk.ordersid.Length; i++)
+                    tk.ordersid[i] = 0;
+                for (int i = 0; i < order.Length; i++)
+                    order[i] = 0;
+            }
         }
     }
     public enum ingredients

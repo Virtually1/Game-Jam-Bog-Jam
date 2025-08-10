@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public int bars;
     public int nobars;
     public RawImage imgs;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {

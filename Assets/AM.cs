@@ -52,8 +52,10 @@ public class AM : MonoBehaviour
                         rb[idn].gameObject.transform.position = tables[i].chairpos[j].transform.position;
                         tables[i].chairstaken++;
                         tables[i].chairid[j] = 1;
+                        tables[i].npcs[j] = idn;
                         tables[i].OrderManage();
                         hastaken= true;
+
                     }
                 }
 
