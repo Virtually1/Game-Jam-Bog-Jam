@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MenuFunction : MonoBehaviour
 {
     public GameObject mainMenu;
@@ -36,5 +36,10 @@ public class MenuFunction : MonoBehaviour
             mainMenu.SetActive(true);
             Time.timeScale = 0f; // Pause the game
         }
+    }
+    public void exit()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
     }
 }

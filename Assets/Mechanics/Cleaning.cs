@@ -22,6 +22,8 @@ public class Cleaning : MonoBehaviour
     public RedirectCleaning Rc;
     public int i;
     public Tasks tk;
+    public PlayerMovement pm;
+    public int diffcount;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,7 @@ public class Cleaning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (canclean)
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -50,22 +53,27 @@ public class Cleaning : MonoBehaviour
                 interact.work = false;
                 UI.SetActive(false);
                 canclean = false;
+                pm.score += tk.taskpoints;
+                tk.taskpoints = 0;
+                tk.taskcompleted = true;
             }
         }
     }
     public void clean()
     {
-        if (count == 5)
+        if (count == tk.dificulty-1)
         {
             dishamount--;
             once = false;
+            tk.taskpoints += count;
             count = 0;
             i= 0;
+
         }
     }
     public void DirtSpawn()
     {
-        while (i < 5)
+        while (i < tk.dificulty-1)
         {
 
 

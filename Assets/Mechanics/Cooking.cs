@@ -36,6 +36,8 @@ public class Cooking : MonoBehaviour
     public int v;
     public bool once = false;
     public int dishes;
+    public FoodSlice[] slicing;
+    public int countchop=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,15 +87,31 @@ public class Cooking : MonoBehaviour
         
        chopcount++;
        Debug.Log("Chopping ingredients...");
-        if(chopcount==5)
+        if(chopcount == tk.dificulty )
         {
             Debug.Log(foods[z].gameObject.name);
             foods[z].SetActive(false);
+            tk.taskpoints += chopcount;
             chopcount = 0;
             spawned = false;
             count++;
-            
+            countchop=0;
         }
+        if(chopcount==1)
+        {
+            foods[z].gameObject.GetComponent<RawImage>().texture = slicing[z].textures[countchop];
+            countchop++;
+        }
+        if(chopcount==tk.dificulty-2)
+        {
+            foods[z].gameObject.GetComponent<RawImage>().texture = slicing[z].textures[countchop];
+            countchop++;
+        }
+        if(chopcount== tk.dificulty - 1)
+        {
+            foods[z].gameObject.GetComponent<RawImage>().texture = slicing[z].textures[countchop];
+        }
+
         if (count == order.Length)
         {
             Debug.Log("intra");
@@ -166,15 +184,20 @@ public class Cooking : MonoBehaviour
             dishes++;
             if (tk.currentorder == tk.amount)
             {
-
+                tk.taskpoints += 10;
                 tk.currentorder = 0;
                 interact.work = false;
                 Menu.SetActive(false);
                 cancook = false;
                 once = true;
                 tk.taskid = 1;
-                for(int i=0; i<tk.ordersid.Length; i++)
+                for (int i = 0; i < tk.ordersid.Length; i++)
+                {
+
+                    if (tk.ordersid[i]!=0)
+                    tk.orderstext[i].text = "Done";
                     tk.ordersid[i] = 0;
+                }
                 for (int i = 0; i < order.Length; i++)
                     order[i] = 0;
             }
@@ -192,4 +215,7 @@ public class Cooking : MonoBehaviour
         TSlice = 11,
         WSlice = 12,
     }
+    //5
+    //3
+    //1,3,4
 }

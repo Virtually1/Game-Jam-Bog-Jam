@@ -24,6 +24,7 @@ public class Table : MonoBehaviour
     public float timer = 0;
     public NpcAI na;
     public AM am;
+    public PlayerMovement pm;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,10 +42,12 @@ public class Table : MonoBehaviour
         if(chairstaken!=0)
         {
             taken = true;
+            na.reset = true;
         }
         
         if(orders>0&&serving&&Input.GetKeyDown(KeyCode.E)&&tk.taskid==0&&!eating)
         {
+            
             TaskManager();
 
         }
@@ -59,11 +62,15 @@ public class Table : MonoBehaviour
         }
         if(finished)
         {
+            tk.taskcompleted = true;
+            pm.score += tk.taskpoints;
+            tk.taskpoints = 0;
             taken = false;
             FinishedEating();
             na.amount = na.amount - chairstaken;
             chairstaken = 0;
             finished = false;
+            tk.j = 0;
         }
     }
     public void FinishedEating()
@@ -77,6 +84,7 @@ public class Table : MonoBehaviour
             }
             chairid[i] = 0;
         }
+        orders = 0;
     }
     public void TaskManager()
     {

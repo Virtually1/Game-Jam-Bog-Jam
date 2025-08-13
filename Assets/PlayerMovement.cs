@@ -22,14 +22,17 @@ public class PlayerMovement : MonoBehaviour
     public int nobars;
     public RawImage imgs;
     public int score;
+    public TextMeshProUGUI scoretext;
     // Start is called before the first frame update
     void Start()
     {
+        score= 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        scoretext.text = score.ToString();
         energybar();
         Movement();
     }

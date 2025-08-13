@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(StaticData.difficulty!=0)
+        timeLeft = 120 * (4 - StaticData.difficulty);
         
     }
 
@@ -47,7 +50,8 @@ public class Timer : MonoBehaviour
     }
     public void End()
     {
-        
+        SaveSystem.Save(StaticData.slotindex);
+        SceneManager.LoadScene("Main Menu");
         Debug.Log("Time's up!");
     }
 }

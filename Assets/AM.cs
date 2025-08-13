@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.XR;
@@ -18,7 +19,6 @@ public class AM : MonoBehaviour
     public int idr;
     public Table[] tables = new Table[8];
     public bool hastaken=false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,15 @@ public class AM : MonoBehaviour
                         tables[i].npcs[j] = idn;
                         tables[i].OrderManage();
                         hastaken= true;
-
+                        na.direction++;
+                        if (na.direction % 3 == 0)
+                        {
+                            na.temp[idn].transform.localScale *= new Vector2(-1f,1f);
+                        }
+                        if(na.direction % 2 == 0)
+                        {
+                            na.temp[idn].gameObject.GetComponent<SpriteRenderer>().sortingOrder = 11;
+                        }
                     }
                 }
 

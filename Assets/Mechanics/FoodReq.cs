@@ -7,6 +7,7 @@ public class FoodReq : MonoBehaviour
     // Start is called before the first frame update
     public int[] ingredientIDRequired = new int[9];
     public int orderid;
+    public string names;
     void Start()
     {
         

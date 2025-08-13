@@ -22,7 +22,7 @@ public class Interact : MonoBehaviour
     void FixedUpdate()
     {
         caninteract = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Station"));
-        if (caninteract && pm.energy > 10&&!menu.paused)
+        if (caninteract && pm.energy-10f > 10&&!menu.paused)
         {
             Collider2D station = Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("Station"));
             if(station.gameObject.tag=="Cooking" && Input.GetKeyDown(KeyCode.E)&&tk.taskid==2)
