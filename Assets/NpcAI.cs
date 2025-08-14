@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.WebSockets;
+
 using UnityEngine;
 
 public class NpcAI : MonoBehaviour

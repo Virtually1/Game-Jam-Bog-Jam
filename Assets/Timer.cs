@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -50,7 +49,7 @@ public class Timer : MonoBehaviour
     }
     public void End()
     {
-        SaveSystem.Save(StaticData.slotindex);
+        SaveSystem.Save();
         SceneManager.LoadScene("Main Menu");
         Debug.Log("Time's up!");
     }

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
 
 public class Load : MonoBehaviour
@@ -45,7 +43,21 @@ public class Load : MonoBehaviour
     }
     public void Save(ref PlayerSaveData data)
     {
-        data.highscore = pm.score;
+        if (StaticData.difficulty==1)
+        {
+            if(data.easyhighscore>pm.score)
+            data.easyhighscore = pm.score;
+        }
+        if(StaticData.difficulty == 2)
+        {
+            if (data.mediumhighscore > pm.score)
+                data.mediumhighscore = pm.score;
+        }
+        if(StaticData.difficulty == 3)
+        {
+            if (data.hardhighscore > pm.score)
+                data.hardhighscore = pm.score;
+        }
     }
     public void LoadData(PlayerSaveData data)
     {
@@ -60,6 +72,8 @@ public class Load : MonoBehaviour
 public struct PlayerSaveData
 {
 
-    public int highscore;
+    public int easyhighscore;
+    public int mediumhighscore;
+    public int hardhighscore;
 
 }

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using System.IO;
-using Unity.Loading;
 
 public class SaveSystem 
 {
@@ -14,23 +12,23 @@ public class SaveSystem
         public PlayerSaveData PSD;
 
     }
-    public static string GetSavePath(int slot)
+    public static string GetSavePath()
     {
-        string path = Application.persistentDataPath + "/save"+slot.ToString()+".gmsf";
+        string path = Application.persistentDataPath + "/save"+".gmsf";
         return path;
     }
-    public static void Save(int slot)
+    public static void Save()
     {
         HSD();  
-        File.WriteAllText(GetSavePath(slot), JsonUtility.ToJson(savedata));
+        File.WriteAllText(GetSavePath(), JsonUtility.ToJson(savedata));
     }
     public static void HSD()
     {
         Load.Instance.Save(ref savedata.PSD);
     }
-    public static void Loads(int slot)
+    public static void Loads()
     {
-        string Content = File.ReadAllText(GetSavePath(slot));
+        string Content = File.ReadAllText(GetSavePath());
         savedata = JsonUtility.FromJson<SaveData>(Content);
         HLD();
     }
