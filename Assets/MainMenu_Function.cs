@@ -27,7 +27,6 @@ public class MainMenu_Function : MonoBehaviour
     }
     public void Menu()
     {
-        Options.SetActive(false);
         DifMenu.SetActive(false );
         Mmenu.SetActive(true);
     }

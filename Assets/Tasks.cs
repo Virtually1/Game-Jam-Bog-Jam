@@ -27,8 +27,22 @@ public class Tasks : MonoBehaviour
     void Start()
     {
         dificulty = 3 + StaticData.difficulty;
-        difficultyincrement = 15 + (StaticData.difficulty * 5);
         
+        if(StaticData.difficulty==1)
+        {
+            difficultyincrement = 10;
+
+        }
+        if (StaticData.difficulty == 2)
+        {
+            difficultyincrement = 15;
+
+        }
+        if (StaticData.difficulty == 3)
+        {
+            difficultyincrement = 25;
+
+        }
     }
 
     // Update is called once per frame
