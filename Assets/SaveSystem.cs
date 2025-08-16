@@ -4,7 +4,6 @@ using System.IO;
 
 public class SaveSystem 
 {
-
     private static SaveData savedata = new SaveData();
     [System.Serializable]
     public struct SaveData
@@ -20,7 +19,7 @@ public class SaveSystem
     public static void Save()
     {
         HSD();  
-        File.WriteAllText(GetSavePath(), JsonUtility.ToJson(savedata));
+        File.WriteAllText(GetSavePath(), JsonUtility.ToJson(savedata,true));
     }
     public static void HSD()
     {

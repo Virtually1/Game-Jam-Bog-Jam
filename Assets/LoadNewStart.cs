@@ -12,13 +12,13 @@ public class LoadNewStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadIN();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        LoadIN();
     }
     public void Start(int slot)
     {
@@ -36,10 +36,10 @@ public class LoadNewStart : MonoBehaviour
                 {
 
                     SaveSystem.Loads();
-                
-                    texts[0].text = saveData.easyhighscore.ToString();
-                    texts[1].text = saveData.mediumhighscore.ToString();
-                    texts[1].text = saveData.hardhighscore.ToString();
+
+                    texts[0].text = "Highscore:"+StaticData.easyhighscore.ToString();
+                    texts[1].text = "Highscore:" + StaticData.mediumhighscore.ToString();
+                    texts[2].text = "Highscore:" + StaticData.hardhighscore.ToString();
                 }
             }
         

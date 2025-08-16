@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public RawImage imgs;
     public int score;
     public TextMeshProUGUI scoretext;
+    public TextMeshProUGUI locationtext;
+    public Animator animator;
+    public Collider2D onfloor;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         scoretext.text = score.ToString();
         energybar();
         Movement();
+        location();
     }
     public void Movement()
     {
@@ -64,6 +68,52 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontalSpeed * speed, verticalSpeed * speed);
         }
+
+        //ANIMATIONS DOWN BELOW
+
+
+
+        if(verticalSpeed==0&&horizontalSpeed==0)
+        {
+            animator.SetBool("idle", true);
+        }
+        else
+        {
+            animator.SetBool("idle", false);
+        }
+        if (verticalSpeed > 0)
+        {
+            animator.SetBool("forward", true);
+        }
+        else
+        {
+            animator.SetBool("forward",false);
+        }
+        if(horizontalSpeed > 0)
+        {
+            animator.SetBool("right", true);
+        }
+        else
+        {
+            animator.SetBool("right", false);
+        }
+        if (verticalSpeed <0)
+        {
+            animator.SetBool("back", true);
+        }
+        else
+        {
+            animator.SetBool("back", false);
+        }
+        if (horizontalSpeed < 0)
+        {
+            animator.SetBool("Left", true);
+        }
+        else
+        {
+            animator.SetBool("Left", false);
+        }
+
 
     }
     public void energydrain()
@@ -102,6 +152,11 @@ public class PlayerMovement : MonoBehaviour
         }
             procent.text = ((int)energy).ToString() + "%";
     }
+    public void location()
+    {
+        onfloor = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Floor"));
+        locationtext.text = onfloor.gameObject.tag;
+    }    
     public void energyrecharge()
     {
 

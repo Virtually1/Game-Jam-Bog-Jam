@@ -36,6 +36,7 @@ public class Cooking : MonoBehaviour
     public int dishes;
     public FoodSlice[] slicing;
     public int countchop=0;
+    public Texture temptexture;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,9 +95,11 @@ public class Cooking : MonoBehaviour
             spawned = false;
             count++;
             countchop=0;
+            foods[z].gameObject.GetComponent<RawImage>().texture = temptexture;
         }
         if(chopcount==1)
         {
+            temptexture = foods[z].gameObject.GetComponent<RawImage>().texture;
             foods[z].gameObject.GetComponent<RawImage>().texture = slicing[z].textures[countchop];
             countchop++;
         }
@@ -118,6 +121,7 @@ public class Cooking : MonoBehaviour
             chopping.SetActive(false);
             c = 0;
             z=0;
+            countchop = 0;
             count = 0;
             inpot = true;
         }
@@ -160,7 +164,7 @@ public class Cooking : MonoBehaviour
             temp[i] = ((GameObject)Instantiate(prefab, Points[i]));
             Rc[i]= temp[i].GetComponent<RedirectCooking>();
             temp[i].name = tname;
-            temp[i].GetComponent<RawImage>().color = foods[dishreqid[i]-4].GetComponent<RawImage>().color;
+            temp[i].GetComponent<RawImage>().texture = foods[dishreqid[i]-4].GetComponent<RawImage>().texture;
             temp[i].transform.SetParent(Points[i].transform, false);
             temp[i].transform.localPosition = new Vector2(0,0);
             Rc[i].cook = this.GetComponent<Cooking>();

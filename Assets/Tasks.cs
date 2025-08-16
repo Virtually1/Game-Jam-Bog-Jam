@@ -72,6 +72,19 @@ public class Tasks : MonoBehaviour
                     j++;
                 }
             }
+            if(taskid==3)
+            {
+            orderstext[1].text = "Clean Dishes";
+            }
+            
+            if(taskid!=3&&taskid!=2)
+            {
+            for(int i=0;i<ordersid.Length;i++)
+            {
+                orderstext[i].text = "";
+            }
+            }
+
 
         }
 }

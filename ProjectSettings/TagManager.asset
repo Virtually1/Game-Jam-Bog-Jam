@@ -8,6 +8,13 @@ TagManager:
   - Washing
   - Cashier
   - Pot
+  - Bathroom
+  - Kitcken
+  - Washing Room
+  - Main Hallway
+  - Recharging Room
+  - Collidor
+  - Storage Room
   layers:
   - Default
   - TransparentFX
@@ -22,7 +29,7 @@ TagManager:
   - Border
   - Player
   - Table
-  - 
+  - Floor
   - 
   - 
   - 

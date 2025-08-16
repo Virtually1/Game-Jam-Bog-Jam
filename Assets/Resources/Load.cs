@@ -43,25 +43,30 @@ public class Load : MonoBehaviour
     }
     public void Save(ref PlayerSaveData data)
     {
-        if (StaticData.difficulty==1)
+        if (StaticData.difficulty == 1)
         {
-            if(data.easyhighscore>pm.score)
-            data.easyhighscore = pm.score;
+            if (data.easyhighscore < pm.score)
+                data.easyhighscore = pm.score;
+            StaticData.easyhighscore = data.easyhighscore;
         }
-        if(StaticData.difficulty == 2)
+        if (StaticData.difficulty == 2)
         {
-            if (data.mediumhighscore > pm.score)
+            if (data.mediumhighscore < pm.score)
                 data.mediumhighscore = pm.score;
+            StaticData.mediumhighscore = data.mediumhighscore;
         }
-        if(StaticData.difficulty == 3)
+        if (StaticData.difficulty == 3)
         {
-            if (data.hardhighscore > pm.score)
+            if (data.hardhighscore < pm.score)
                 data.hardhighscore = pm.score;
+            StaticData.hardhighscore = data.hardhighscore;
         }
     }
     public void LoadData(PlayerSaveData data)
     {
-
+        StaticData.easyhighscore = data.easyhighscore;
+        StaticData.mediumhighscore = data.mediumhighscore;
+        StaticData.hardhighscore = data.hardhighscore;
     }
 
 

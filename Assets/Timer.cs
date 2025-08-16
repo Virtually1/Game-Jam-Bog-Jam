@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timertext;
     public float vtimeleft;
     public float minutes;
+    public Load Load;
     // Start is called before the first frame update
     void Start()
     {
